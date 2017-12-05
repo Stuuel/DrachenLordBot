@@ -21,10 +21,16 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content.startswith('-bild'):
-        bild='lardpics/'
+        bild = 'lardpics/'
         randombild = random.choice(os.listdir(bild))
         bild += randombild
         await client.send_file(message.channel, bild)
+
+    if message.content.startswith('-nsfw'):
+        nsfw = 'lardpics-nsfw/'
+        randomnsfw = random.choice(os.listdir(nsfw))
+        nsfw += randomnsfw
+        await client.send_file(message.channel, nsfw)
 
     if message.content.startswith('-zitat'):
         with open('lard.txt') as f:
