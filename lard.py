@@ -32,4 +32,4 @@ async def on_message(message):
             quotes = [x.strip() for x in quotes]
         await client.send_message(message.channel, random.choice(quotes))
 
-client.run('Mzg3MjI4MDA5Nzc5ODIyNTky.DQbxmg.I3fSZb6GhxpLU85SxHhShd-ihwg')
+client.run('Mzg3MTkyNzI5NzU2NzYyMTE2.DQgp6w.1rldO7G6GeYMqwtxRdlwIbrGj-s')
