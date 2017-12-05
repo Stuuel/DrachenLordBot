@@ -20,15 +20,17 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    better_random = random.SystemRandom()
+
     if message.content.startswith('-bild'):
         bild = 'lardpics/'
-        randombild = random.choice(os.listdir(bild))
+        randombild = better_random.choice(os.listdir(bild))
         bild += randombild
         await client.send_file(message.channel, bild)
 
     if message.content.startswith('-nsfw'):
         nsfw = 'lardpics-nsfw/'
-        randomnsfw = random.choice(os.listdir(nsfw))
+        randomnsfw = better_random.choice(os.listdir(nsfw))
         nsfw += randomnsfw
         await client.send_file(message.channel, nsfw)
 
@@ -36,6 +38,6 @@ async def on_message(message):
         with open('lard.txt') as f:
             quotes = f.readlines()
             quotes = [x.strip() for x in quotes]
-        await client.send_message(message.channel, random.choice(quotes))
+        await client.send_message(message.channel, better_random.choice(quotes))
 
 client.run('Mzg3MTkyNzI5NzU2NzYyMTE2.DQgp6w.1rldO7G6GeYMqwtxRdlwIbrGj-s')
