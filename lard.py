@@ -49,7 +49,7 @@ async def on_message(message):
 
 async def my_background_task():
     await client.wait_until_ready()
-    channel = discord.Object(id='361029620490829824')
+    channel = discord.Object(id='387184662906404864')
     while not client.is_closed:
         bildquote = randint(0,40)
         if bildquote > 10:
@@ -57,14 +57,14 @@ async def my_background_task():
                 quotes = f.readlines()
                 quotes = [x.strip() for x in quotes]
                 await client.send_message(channel, better_random.choice(quotes))
-        else:
-            bild = 'lardpics/'
-            randombild = better_random.choice(os.listdir(bild))
-            bild += randombild
-            await client.send_file(channel, bild)
+        #else:
+        #    bild = 'lardpics/'
+        #    randombild = better_random.choice(os.listdir(bild))
+        #    bild += randombild
+        #    await client.send_file(channel, bild)
 
-        await asyncio.sleep(randint(300,1500)) 
+        await asyncio.sleep(randint(0,10)) 
 
 client.loop.create_task(my_background_task())
 
-client.run('Mzg3MTkyNzI5NzU2NzYyMTE2.DQgp6w.1rldO7G6GeYMqwtxRdlwIbrGj-s')
+client.run('Mzg3MjI4MDA5Nzc5ODIyNTky.DQbxmg.I3fSZb6GhxpLU85SxHhShd-ihwg')
