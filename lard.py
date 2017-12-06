@@ -49,7 +49,7 @@ async def on_message(message):
 
 async def my_background_task():
     await client.wait_until_ready()
-    channel = discord.Object(id='387184662906404864')
+    channel = discord.Object(id='361029620490829824')
     while not client.is_closed:
         bildquote = randint(0,40)
         if bildquote > 10:
