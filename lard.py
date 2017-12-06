@@ -51,8 +51,8 @@ async def my_background_task():
     await client.wait_until_ready()
     channel = discord.Object(id='361029620490829824')
     while not client.is_closed:
-        bildquote = randint(0,40)
-        if bildquote > 10:
+        #bildquote = randint(0,40)
+        #if bildquote > 10:
             with open('lard.txt') as f:
                 quotes = f.readlines()
                 quotes = [x.strip() for x in quotes]
