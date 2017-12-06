@@ -63,7 +63,7 @@ async def my_background_task():
         #    bild += randombild
         #    await client.send_file(channel, bild)
 
-    await asyncio.sleep(randint(300,1500))
+        await asyncio.sleep(randint(300,1500))
         
 client.loop.create_task(my_background_task())
 
