@@ -39,5 +39,11 @@ async def on_message(message):
             quotes = f.readlines()
             quotes = [x.strip() for x in quotes]
         await client.send_message(message.channel, better_random.choice(quotes))
+        
+    if message.content.startswith('-frage'):
+        with open('frage.txt') as f:
+            quotes = f.readlines()
+            quotes = [x.strip() for x in quotes]
+        await client.send_message(message.channel, better_random.choice(quotes))
 
 client.run('Mzg3MTkyNzI5NzU2NzYyMTE2.DQgp6w.1rldO7G6GeYMqwtxRdlwIbrGj-s')
