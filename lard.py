@@ -8,7 +8,8 @@ import os
 from random import randint
 
 client = Bot(description="", command_prefix="-", pm_help = True)
-
+counter = 0
+random_text = 0
 
 @client.event
 async def on_ready():
@@ -21,56 +22,65 @@ async def on_ready():
 
 better_random = random.SystemRandom()
 
+
+class Reply:
+
+    def __init__(self, message):
+        global client
+        self.message = message
+
+    def text(self, message, textfile):
+        with open(textfile + '.txt') as f:
+            quotes = f.readlines()
+            quotes = [x.strip() for x in quotes]
+        return better_random.choice(quotes)
+
+    def filetype(self, message, path):
+        filetype = path + '/'
+        random = better_random.choice(os.listdir(filetype))
+        filetype += random
+        return filetype
+
+
+
+
 @client.event
 async def on_message(message):
-    if message.content.startswith('-bild'):
-        bild = 'lardpics/'
-        randombild = better_random.choice(os.listdir(bild))
-        bild += randombild
-        await client.send_file(message.channel, bild)
-		
+    global random_text
+    global counter
+    reply = Reply(message)
+
+    if  message.author == client.user:
+        return
+    counter += 1
+
+    if random_text == 0:
+        random_text = randint(15, 45)
+
+    if counter >= random_text:
+        if counter%2 == 0:
+            await client.send_message(message.channel, reply.text(message, 'quotes'))
+        else:
+            await client.send_file(message.channel, reply.filetype(message, 'pics'))
+        counter = 0
+        random_text = 0
+
     if message.content.startswith('-gif'):
-        gif = 'gifs/'
-        randomgif = better_random.choice(os.listdir(gif))
-        gif += randomgif
-        await client.send_file(message.channel, gif)
+        await client.send_file(message.channel, reply.filetype(message, 'gifs'))
+
+    if message.content.startswith('-bild'):
+        await client.send_file(message.channel, reply.filetype(message, 'pics' ))
 
     if message.content.startswith('-nsfw'):
-        nsfw = 'lardpics-nsfw/'
-        randomnsfw = better_random.choice(os.listdir(nsfw))
-        nsfw += randomnsfw
-        await client.send_file(message.channel, nsfw)
+        await client.send_file(message.channel, reply.filetype(message, 'nsfw'))
 
     if message.content.startswith('-zitat'):
-        with open('lard.txt') as f:
-            quotes = f.readlines()
-            quotes = [x.strip() for x in quotes]
-        await client.send_message(message.channel, better_random.choice(quotes))
-        
+        await client.send_message(message.channel, reply.text(message, 'quotes'))
+
     if message.content.startswith('-frage'):
-        with open('frage.txt') as f:
-            quotes = f.readlines()
-            quotes = [x.strip() for x in quotes]
-        await client.send_message(message.channel, better_random.choice(quotes))
+        await client.send_message(message.channel, reply.text(message, 'questions'))
 
-async def my_background_task():
-    await client.wait_until_ready()
-    channel = discord.Object(id='361029620490829824')
-    while not client.is_closed:
-        #bildquote = randint(0,40)
-        #if bildquote > 10:
-        with open('lard.txt') as f:
-            quotes = f.readlines()
-            quotes = [x.strip() for x in quotes]
-            await client.send_message(channel, better_random.choice(quotes))
-        #else:
-        #    bild = 'lardpics/'
-        #    randombild = better_random.choice(os.listdir(bild))
-        #    bild += randombild
-        #    await client.send_file(channel, bild)
 
-        await asyncio.sleep(randint(300,1500))
-        
-client.loop.create_task(my_background_task())
+
 
 client.run('Mzg3MTkyNzI5NzU2NzYyMTE2.DQgp6w.1rldO7G6GeYMqwtxRdlwIbrGj-s')
