@@ -28,6 +28,12 @@ async def on_message(message):
         randombild = better_random.choice(os.listdir(bild))
         bild += randombild
         await client.send_file(message.channel, bild)
+		
+	if message.content.startswith('-gif'):
+        gif = 'gifs/'
+        randomgif = better_random.choice(os.listdir(gif))
+        gif += randomgif
+        await client.send_file(message.channel, gif)
 
     if message.content.startswith('-nsfw'):
         nsfw = 'lardpics-nsfw/'
