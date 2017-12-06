@@ -29,7 +29,7 @@ async def on_message(message):
         bild += randombild
         await client.send_file(message.channel, bild)
 		
-	if message.content.startswith('-gif'):
+    if message.content.startswith('-gif'):
         gif = 'gifs/'
         randomgif = better_random.choice(os.listdir(gif))
         gif += randomgif
