@@ -54,7 +54,7 @@ async def on_message(message):
     counter += 1
 
     if random_text == 0:
-        random_text = randint(15, 45)
+        random_text = randint(15, 150)
 
     if counter >= random_text:
         if counter%2 == 0:
