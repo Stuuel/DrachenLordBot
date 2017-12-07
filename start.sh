@@ -10,5 +10,5 @@ do
           sleep 10s
           python3 lard.py &
      fi     
-     sleep 1h 
+     sleep 5m 
 done
