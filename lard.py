@@ -24,7 +24,6 @@ better_random = random.SystemRandom()
 
 
 class Reply:
-
     def __init__(self, message):
         global client
         self.message = message
