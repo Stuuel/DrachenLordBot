@@ -79,8 +79,8 @@ async def on_message(message):
     if message.content.startswith('-frage'):
         await client.send_message(message.channel, reply.text(message, 'questions'))
 	
-    if message.content.startswith('-stream'):
-	await client.send_message(message.channel, reply.text(message, 'stream'))
+	if message.content.startswith('-stream'):
+		await client.send_message(message.channel, reply.text(message, 'stream'))
 
 
 
